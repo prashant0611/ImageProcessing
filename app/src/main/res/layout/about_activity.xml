@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:layout_gravity="top|center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/developer"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Developer :"
+            android:layout_gravity="left|center_horizontal"
+            android:textColor="#fc0101"
+            android:textStyle="bold"
+            android:textSize="50px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prashant Dwivedi"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic"
+            android:textSize="40px"
+            android:textColor="#08aaf4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact:"
+            android:textColor="#fc0101"
+            android:textStyle="bold"
+            android:textSize="50px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="prashant.061190@gmail.com"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic"
+            android:textSize="40px"
+            android:textColor="#08aaf4" />
+    </LinearLayout>
+</LinearLayout>

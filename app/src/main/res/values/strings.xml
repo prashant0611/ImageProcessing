@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Image Processing</string>
+    <string name="about">About</string>
+    <string name="setting">Setting</string>
+
+    <string-array name="colors">
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Yellow</item>
+        <item>Grey</item>
+        <item>Green</item>
+    </string-array>
+</resources>
