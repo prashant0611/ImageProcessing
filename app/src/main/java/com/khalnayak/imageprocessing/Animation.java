@@ -30,11 +30,12 @@ import com.khalnayak.imageprocessing.Setting.Setting;
 public class Animation extends AppCompatActivity {
 
     LinearLayout animationLayout;
+    LinearLayout hiddenLayout;
     SharedPreferences sp;
 
     private static int RESULT_LOAD_IMAGE = 1;
     private static final int CAMERA_REQUEST = 1888;
-    Bitmap photo;
+    Bitmap photo = null;
     ImageView imageView;
 
     @Override
@@ -43,6 +44,7 @@ public class Animation extends AppCompatActivity {
         setContentView(R.layout.animation_activity);
         imageView = (ImageView) findViewById(R.id.imgView);
         animationLayout = (LinearLayout) findViewById(R.id.animationlinear);
+        hiddenLayout = (LinearLayout) findViewById(R.id.hiddenLayout);
 
         sp = getSharedPreferences("BG_Color", Context.MODE_PRIVATE);
         animationLayout.setBackgroundColor(sp.getInt("BG_Color_Key", Color.WHITE));
@@ -95,7 +97,9 @@ public class Animation extends AppCompatActivity {
                 break;
             case R.id.btnCamera:
                 camera();
+                break;
         }
+
     }
 
     private void camera() {
@@ -116,6 +120,7 @@ public class Animation extends AppCompatActivity {
         gallery.putExtra("aspectY", 1);
         gallery.putExtra("return-data", true);
         startActivityForResult(gallery, RESULT_LOAD_IMAGE);
+
     }
 
 
@@ -129,11 +134,12 @@ public class Animation extends AppCompatActivity {
                 //Get image
                 photo = extras.getParcelable("data");
             }
+                hiddenLayout.setVisibility(View.VISIBLE);
             imageView.setImageBitmap(photo);
-
         }
-        else if(requestCode == CAMERA_REQUEST && resultCode == RESULT_OK){
+        else if(requestCode == CAMERA_REQUEST && resultCode == RESULT_OK && null != data){
             photo = (Bitmap) data.getExtras().get("data");
+            hiddenLayout.setVisibility(View.VISIBLE);
             imageView.setImageBitmap(photo);
         }
     }
@@ -182,7 +188,9 @@ public class Animation extends AppCompatActivity {
                 break;
 
             case R.id.btnReset:
+                photo =null;
                 imageView.setImageBitmap(photo);
+                hiddenLayout.setVisibility(View.INVISIBLE);
                 break;
         }
     }
