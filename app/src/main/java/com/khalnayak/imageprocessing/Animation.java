@@ -97,10 +97,17 @@ public class Animation extends AppCompatActivity {
     }
 
     private void gallery() {
-        Intent i = new Intent(
-                Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(i, RESULT_LOAD_IMAGE);
+        Intent gallery = new Intent(
+                Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        gallery.setType("image/*");
+        gallery.putExtra("crop", "true");
+        gallery.putExtra("scale", true);
+        gallery.putExtra("outputX", 256);
+        gallery.putExtra("outputY", 256);
+        gallery.putExtra("aspectX", 1);
+        gallery.putExtra("aspectY", 1);
+        gallery.putExtra("return-data", true);
+        startActivityForResult(gallery, RESULT_LOAD_IMAGE);
     }
 
 
@@ -109,17 +116,11 @@ public class Animation extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            photo = BitmapFactory.decodeFile(picturePath);
+            final Bundle extras = data.getExtras();
+            if (extras != null) {
+                //Get image
+                photo = extras.getParcelable("data");
+            }
             imageView.setImageBitmap(photo);
 
         }
