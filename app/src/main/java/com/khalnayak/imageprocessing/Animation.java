@@ -49,6 +49,14 @@ public class Animation extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        sp = getSharedPreferences("BG_Color", Context.MODE_PRIVATE);
+        animationLayout.setBackgroundColor(sp.getInt("BG_Color_Key", Color.WHITE));
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(1,1,1,"Help");
         menu.add(1,2,2,"Setting");
